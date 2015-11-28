@@ -179,7 +179,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         ((TextView) rootView.findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
-        String[] authorsArr = authors.split(",");
+        String[] authorsArr = (authors != null) ? authors.split(",") : new String[]{};
         ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
         ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
@@ -218,7 +218,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == BarcodeCaptureActivity.CAPTURE_BARCODE_REQUEST && CommonStatusCodes.SUCCESS == requestCode && data != null){
+        if(requestCode == BarcodeCaptureActivity.CAPTURE_BARCODE_REQUEST && CommonStatusCodes.SUCCESS == resultCode && data != null){
             Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
             EditText isbn = (EditText) rootView.findViewById(R.id.ean);
             isbn.setText(barcode.rawValue);

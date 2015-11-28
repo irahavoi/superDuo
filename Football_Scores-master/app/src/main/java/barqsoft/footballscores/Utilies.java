@@ -1,5 +1,7 @@
 package barqsoft.footballscores;
 
+import android.content.Context;
+
 /**
  * Created by yehya khaled on 3/3/2015.
  */
@@ -65,23 +67,36 @@ public class Utilies
         }
     }
 
-    public static int getTeamCrestByTeamName (String teamname)
+    public static int getTeamCrestByTeamName (Context context, String teamname)
     {
-        if (teamname==null){return R.drawable.no_icon;}
-        switch (teamname)
-        { //This is the set of icons that are currently in the app. Feel free to find and add more
-            //as you go.
-            case "Arsenal London FC" : return R.drawable.arsenal;
-            case "Manchester United FC" : return R.drawable.manchester_united;
-            case "Swansea City" : return R.drawable.swansea_city_afc;
-            case "Leicester City" : return R.drawable.leicester_city_fc_hd_logo;
-            case "Everton FC" : return R.drawable.everton_fc_logo1;
-            case "West Ham United FC" : return R.drawable.west_ham;
-            case "Tottenham Hotspur FC" : return R.drawable.tottenham_hotspur;
-            case "West Bromwich Albion" : return R.drawable.west_bromwich_albion_hd_logo;
-            case "Sunderland AFC" : return R.drawable.sunderland;
-            case "Stoke City FC" : return R.drawable.stoke_city;
-            default: return R.drawable.soccer;
+        int result = R.drawable.no_icon;
+
+        if (teamname==null){return result;}
+
+        else if(teamname.equals(context.getString(R.string.arsenal_london))){
+            result = R.drawable.arsenal;
+        } else if(teamname.equals(context.getString(R.string.manchester_united))){
+            result = R.drawable.manchester_united;
+        } else if(teamname.equals(context.getString(R.string.swansea_city))){
+            result = R.drawable.swansea_city_afc;
+        } else if(teamname.equals(context.getString(R.string.leicester_city))){
+            result = R.drawable.leicester_city_fc_hd_logo;
+        } else if(teamname.equals(context.getString(R.string.everton))){
+            result = R.drawable.everton_fc_logo1;
+        } else if(teamname.equals(context.getString(R.string.westham))){
+            result = R.drawable.west_ham;
+        } else if(teamname.equals(context.getString(R.string.tottenham))){
+            result = R.drawable.tottenham_hotspur;
+        } else if(teamname.equals(context.getString(R.string.westbtomwichalbion))){
+            result = R.drawable.west_bromwich_albion_hd_logo;
+        } else if(teamname.equals(context.getString(R.string.sunderland))){
+            result = R.drawable.sunderland;
+        } else if(teamname.equals(context.getString(R.string.stokecity))){
+            result = R.drawable.stoke_city;
+        } else{
+            result = R.drawable.soccer;
         }
+
+        return result;
     }
 }
