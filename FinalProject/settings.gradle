@@ -1,0 +1,1 @@
+include ':app', ':jokesgenerator', ':androidjokeslib', ':jokesBackend'
